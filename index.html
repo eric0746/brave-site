@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>YanOnly 複製版首頁</title>
+  <title>影片背景示範</title>
   <style>
-    /* Reset */
+    /* Reset & 基本樣式 */
     * {
       margin: 0; padding: 0; box-sizing: border-box;
     }
-    body, html {
+    html, body {
       height: 100%;
-      font-family: 'Noto Sans TC', sans-serif;
+      overflow: hidden;
+      font-family: 'Noto Sans TC', Arial, sans-serif;
       background: #000;
       color: #fff;
-      overflow-x: hidden;
     }
-    /* 影片全螢幕背景 */
+    /* 影片背景 */
     .video-bg {
       position: fixed;
       top: 0; left: 0;
@@ -30,7 +30,7 @@
       height: 100%;
       object-fit: cover;
     }
-    /* 內容置中 */
+    /* 內容 */
     .content {
       position: relative;
       height: 100vh;
@@ -40,7 +40,7 @@
       align-items: center;
       text-align: center;
       padding: 20px;
-      background: rgba(0,0,0,0.4);
+      background: rgba(0, 0, 0, 0.4);
     }
     h1 {
       font-size: 4rem;
@@ -53,7 +53,6 @@
       letter-spacing: 0.15rem;
       opacity: 0.8;
     }
-    /* 按鈕 */
     .btn {
       margin-top: 2rem;
       padding: 1rem 2rem;
@@ -86,162 +85,15 @@
 <body>
   <div class="video-bg">
     <video autoplay muted loop playsinline>
+      <!-- 這裡放你的影片路徑 -->
       <source src="your-video.mp4" type="video/mp4" />
       你的瀏覽器不支援影片播放。
     </video>
   </div>
-
   <div class="content">
     <h1>YANONLY</h1>
     <p>Creating experiences through video & design</p>
     <button class="btn" onclick="alert('按鈕點擊事件，可以改成跳轉或其他功能')">了解更多</button>
   </div>
-</body>
-</html>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Brave Site with Video Background</title>
-  <style>
-    /* Reset & 基本樣式 */
-    * {
-      margin: 0; padding: 0; box-sizing: border-box;
-    }
-    body, html {
-      height: 100%;
-      font-family: Arial, sans-serif;
-      overflow: hidden;
-      background: #000;
-      color: white;
-    }
-    /* 影片背景 */
-    .video-bg {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-      z-index: -1;
-    }
-    .video-bg video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    /* 內容 */
-    .content {
-      position: relative;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.4);
-    }
-    h1 {
-      font-size: 3.5rem;
-      margin-bottom: 0.5rem;
-    }
-    p {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-    }
-    a {
-      color: #00acee;
-      text-decoration: none;
-      font-weight: bold;
-      margin-top: 1rem;
-      display: inline-block;
-      border: 2px solid #00acee;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      transition: background-color 0.3s ease;
-    }
-    a:hover {
-      background-color: #00acee;
-      color: #000;
-    }
-  </style>
-</head>
-<body>
-  <div class="video-bg">
-    <video autoplay muted loop playsinline>
-      <source src="your-video.mp4" type="video/mp4" />
-      您的瀏覽器不支援影片播放。
-    </video>
-  </div>
-  <div class="content">
-    <h1>Welcome to Brave Site</h1>
-    <p>這是有影片背景的簡易示範頁面</p>
-    <a href="#">查看更多內容</a>
-  </div>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>影片背景示範</title>
-<style>
-  html, body {
-    margin: 0; padding: 0; height: 100%;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-    background: #000;
-    color: white;
-  }
-  .video-bg {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    overflow: hidden;
-    z-index: -1;
-  }
-  .video-bg video {
-    width: 100%; height: 100%;
-    object-fit: cover;
-  }
-  .content {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-  }
-  h1 {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
-  }
-  p {
-    font-size: 1.5rem;
-  }
-</style>
-</head>
-<body>
-
-<div class="video-bg">
-  <video autoplay muted loop playsinline>
-    <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" type="video/webm">
-    <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
-    您的瀏覽器不支援影片播放。
-  </video>
-</div>
-
-<div class="content">
-  <h1>影片背景示範</h1>
-  <p>這是直接用公開影片網址的版本，不用自己準備影片檔</p>
-</div>
-
 </body>
 </html>
