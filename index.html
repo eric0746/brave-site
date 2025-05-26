@@ -3,72 +3,72 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Brave 影片牆 測試版</title>
+<title>內嵌播放的影片牆</title>
 <style>
   body { background:#ffe6f0; font-family: Arial, sans-serif; padding: 30px; }
   h1 { text-align:center; color:#d63384; margin-bottom:40px; }
   .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
-  .video-card { background:#fff; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1); overflow:hidden; transition: transform 0.3s; }
+  .video-card { background:#fff; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1); overflow:hidden; cursor:pointer; transition: transform 0.3s; }
   .video-card:hover { transform: translateY(-5px); }
   .video-card img { width:100%; display:block; }
   .video-title { padding:10px; text-align:center; font-weight:bold; color:#333; }
-  #pagination a { margin: 0 10px; text-decoration: none; color: #d63384; font-weight: bold; }
+  #player-container { margin-top:40px; text-align:center; }
+  #player-container video, #player-container iframe {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
 </style>
 </head>
 <body>
-  <h1>Brave 影片牆 測試版</h1>
-  <div class="gallery" id="gallery"></div>
-  <div id="pagination" style="text-align:center; margin-top: 30px;"></div>
 
-  <script>
-    // 影片資料改成 yanonly clip 頁面連結，並用 clip ID 推估縮圖路徑
-    const videos = [
-      { id: "681cf1484a3bda76fc2d9640", title: "影片1", url: "https://yanonly.com/clip/681cf1484a3bda76fc2d9640", thumbnail: "https://yanonly.com/static/thumb/681cf1484a3bda76fc2d9640.jpg" },
-      { id: "5e3f6723d4b5a60012c7f3e4", title: "影片2", url: "https://yanonly.com/clip/5e3f6723d4b5a60012c7f3e4", thumbnail: "https://yanonly.com/static/thumb/5e3f6723d4b5a60012c7f3e4.jpg" },
-      { id: "4a7b2c9dbe12345678901234", title: "影片3", url: "https://yanonly.com/clip/4a7b2c9dbe12345678901234", thumbnail: "https://yanonly.com/static/thumb/4a7b2c9dbe12345678901234.jpg" },
-      { id: "1234567890abcdef12345678", title: "影片4", url: "https://yanonly.com/clip/1234567890abcdef12345678", thumbnail: "https://yanonly.com/static/thumb/1234567890abcdef12345678.jpg" },
-      { id: "abcdefabcdefabcdefabcdef", title: "影片5", url: "https://yanonly.com/clip/abcdefabcdefabcdefabcdef", thumbnail: "https://yanonly.com/static/thumb/abcdefabcdefabcdefabcdef.jpg" },
-      // 你可以繼續補其他影片
-    ];
+<h1>內嵌播放的影片牆</h1>
+<div class="gallery" id="gallery"></div>
 
-    const gallery = document.getElementById('gallery');
-    const pagination = document.getElementById('pagination');
-    const params = new URLSearchParams(window.location.search);
-    const page = parseInt(params.get("page")) || 1;
-    const itemsPerPage = 4;
-    const totalPages = Math.ceil(videos.length / itemsPerPage);
-    const start = (page - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    const currentVideos = videos.slice(start, end);
+<div id="player-container"></div>
 
-    if (currentVideos.length === 0) {
-      gallery.innerHTML = "<p style='text-align:center; font-size:18px;'>找不到這一頁的內容</p>";
-    } else {
-      currentVideos.forEach(video => {
-        const card = document.createElement('div');
-        card.className = 'video-card';
-        card.innerHTML = `
-          <a href="${video.url}" target="_blank" rel="noopener noreferrer">
-            <img src="${video.thumbnail}" alt="${video.title}" />
-            <div class="video-title">${video.title}</div>
-          </a>
-        `;
-        gallery.appendChild(card);
-      });
+<script>
+  // 範例影片清單，url為影片播放頁面，videoSrc為影片直接檔案或可嵌入的影片來源
+  const videos = [
+    {
+      id: "681cf1484a3bda76fc2d9640",
+      title: "影片1",
+      url: "https://yanonly.com/clip/681cf1484a3bda76fc2d9640",
+      thumbnail: "https://yanonly.com/static/thumb/681cf1484a3bda76fc2d9640.jpg",
+      // 這裡示範直接用 iframe 嵌入 yanonly 播放頁 (假設允許嵌入)
+      embedSrc: "https://yanonly.com/embed/681cf1484a3bda76fc2d9640"
+    },
+    {
+      id: "5e3f6723d4b5a60012c7f3e4",
+      title: "影片2",
+      url: "https://yanonly.com/clip/5e3f6723d4b5a60012c7f3e4",
+      thumbnail: "https://yanonly.com/static/thumb/5e3f6723d4b5a60012c7f3e4.jpg",
+      embedSrc: "https://yanonly.com/embed/5e3f6723d4b5a60012c7f3e4"
     }
+  ];
 
-    // 建立分頁按鈕
-    const createPageLink = (pageNum, text) => {
-      const link = document.createElement('a');
-      link.href = `?page=${pageNum}`;
-      link.textContent = text;
-      return link;
-    };
+  const gallery = document.getElementById('gallery');
+  const playerContainer = document.getElementById('player-container');
 
-    if (totalPages > 1) {
-      if (page > 1) pagination.appendChild(createPageLink(page - 1, '← 上一頁'));
-      if (page < totalPages) pagination.appendChild(createPageLink(page + 1, '下一頁 →'));
-    }
-  </script>
+  videos.forEach(video => {
+    const card = document.createElement('div');
+    card.className = 'video-card';
+    card.innerHTML = `
+      <img src="${video.thumbnail}" alt="${video.title}" />
+      <div class="video-title">${video.title}</div>
+    `;
+    card.addEventListener('click', () => {
+      // 點擊影片縮圖，顯示iframe播放器
+      playerContainer.innerHTML = `
+        <h2>${video.title}</h2>
+        <iframe src="${video.embedSrc}" width="720" height="405" frameborder="0" allowfullscreen></iframe>
+      `;
+      // 如果 yanonly 不支援 iframe embed，也可以改成直接video標籤播放mp4，但需要影片原始網址
+    });
+    gallery.appendChild(card);
+  });
+</script>
+
 </body>
 </html>
