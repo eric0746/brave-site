@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Brave 影片牆 測試版</title>
-<style>
-  body { background:#ffe6f0; font-family: Arial, sans-serif; padding: 30px; }
-  h1 { text-align:center; color:#d63384; margin-bottom:40px; }
-  .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
-  .video-card { background:#fff; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1); overflow:hidden; transition: transform 0.3s; }
-  .video-card:hover { transform: translateY(-5px); }
-  .video-card img { width:100%; display:block; }
-  .video-title { padding:10px; text-align:center; font-weight:bold; color:#333; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brave 影片牆 測試版</title>
+  <style>
+    body { background:#ffe6f0; font-family: Arial, sans-serif; padding: 30px; }
+    h1 { text-align:center; color:#d63384; margin-bottom:40px; }
+    .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
+    .video-card { background:#fff; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1); overflow:hidden; transition: transform 0.3s; }
+    .video-card:hover { transform: translateY(-5px); }
+    .video-card img { width:100%; display:block; }
+    .video-title { padding:10px; text-align:center; font-weight:bold; color:#333; }
+    #pagination a { margin: 0 10px; text-decoration: none; color: #d63384; font-weight: bold; }
+  </style>
 </head>
 <body>
   <h1>Brave 影片牆 測試版</h1>
   <div class="gallery" id="gallery"></div>
+  <div id="pagination" style="text-align:center; margin-top: 30px;"></div>
 
   <script>
     const videos = [
@@ -33,19 +35,43 @@
     ];
 
     const gallery = document.getElementById('gallery');
-    videos.forEach(video => {
-      const card = document.createElement('div');
-      card.className = 'video-card';
+    const pagination = document.getElementById('pagination');
+    const params = new URLSearchParams(window.location.search);
+    const page = parseInt(params.get("page")) || 1;
+    const itemsPerPage = 4;
+    const totalPages = Math.ceil(videos.length / itemsPerPage);
+    const start = (page - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const currentVideos = videos.slice(start, end);
 
-      card.innerHTML = `
-        <a href="${video.url}" target="_blank" rel="noopener noreferrer">
-          <img src="${video.thumbnail}" alt="${video.title}" />
-          <div class="video-title">${video.title}</div>
-        </a>
-      `;
+    if (currentVideos.length === 0) {
+      gallery.innerHTML = "<p style='text-align:center; font-size:18px;'>找不到這一頁的內容</p>";
+    } else {
+      currentVideos.forEach(video => {
+        const card = document.createElement('div');
+        card.className = 'video-card';
+        card.innerHTML = `
+          <a href="${video.url}" target="_blank" rel="noopener noreferrer">
+            <img src="${video.thumbnail}" alt="${video.title}" />
+            <div class="video-title">${video.title}</div>
+          </a>
+        `;
+        gallery.appendChild(card);
+      });
+    }
 
-      gallery.appendChild(card);
-    });
+    // 建立分頁按鈕
+    const createPageLink = (pageNum, text) => {
+      const link = document.createElement('a');
+      link.href = `?page=${pageNum}`;
+      link.textContent = text;
+      return link;
+    };
+
+    if (totalPages > 1) {
+      if (page > 1) pagination.appendChild(createPageLink(page - 1, '← 上一頁'));
+      if (page < totalPages) pagination.appendChild(createPageLink(page + 1, '下一頁 →'));
+    }
   </script>
 </body>
 </html>
