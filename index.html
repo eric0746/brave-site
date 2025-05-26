@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>測試影片牆</title>
+<title>Brave 影片牆</title>
 <style>
   body { background:#ffe6f0; font-family: Arial,sans-serif; padding: 30px; }
   h1 { text-align:center; color:#d63384; margin-bottom:40px; }
@@ -15,39 +15,31 @@
 </style>
 </head>
 <body>
-  <h1>測試影片牆</h1>
+  <h1>Brave 影片牆</h1>
   <div class="gallery" id="gallery"></div>
 
   <script>
-    const videos = [
-      {
-        id: "test1",
-        title: "示範影片1",
-        url: "https://yanonly.com/videos/0001",
-        thumbnail: "https://via.placeholder.com/320x180?text=示範1"
-      },
-      {
-        id: "test2",
-        title: "示範影片2",
-        url: "https://yanonly.com/videos/0002",
-        thumbnail: "https://via.placeholder.com/320x180?text=示範2"
-      }
-    ];
+    fetch('videos.json')
+      .then(response => response.json())
+      .then(videos => {
+        const gallery = document.getElementById('gallery');
+        videos.forEach(video => {
+          const card = document.createElement('div');
+          card.className = 'video-card';
 
-    const gallery = document.getElementById('gallery');
-    videos.forEach(video => {
-      const card = document.createElement('div');
-      card.className = 'video-card';
+          card.innerHTML = `
+            <a href="${video.url}" target="_blank" rel="noopener noreferrer">
+              <img src="${video.thumbnail}" alt="${video.title}" />
+              <div class="video-title">${video.title}</div>
+            </a>
+          `;
 
-      card.innerHTML = `
-        <a href="${video.url}" target="_blank" rel="noopener noreferrer">
-          <img src="${video.thumbnail}" alt="${video.title}" />
-          <div class="video-title">${video.title}</div>
-        </a>
-      `;
-
-      gallery.appendChild(card);
-    });
+          gallery.appendChild(card);
+        });
+      })
+      .catch(err => {
+        console.error('載入影片清單失敗:', err);
+      });
   </script>
 </body>
 </html>
