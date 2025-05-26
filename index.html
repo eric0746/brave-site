@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Brave 影片牆</title>
+<title>Brave 影片牆 測試版</title>
 <style>
-  body { background:#ffe6f0; font-family: Arial,sans-serif; padding: 30px; }
+  body { background:#ffe6f0; font-family: Arial, sans-serif; padding: 30px; }
   h1 { text-align:center; color:#d63384; margin-bottom:40px; }
   .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
   .video-card { background:#fff; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1); overflow:hidden; transition: transform 0.3s; }
@@ -15,31 +15,38 @@
 </style>
 </head>
 <body>
-  <h1>Brave 影片牆</h1>
+  <h1>Brave 影片牆 測試版</h1>
   <div class="gallery" id="gallery"></div>
 
   <script>
-    fetch('videos.json')
-      .then(response => response.json())
-      .then(videos => {
-        const gallery = document.getElementById('gallery');
-        videos.forEach(video => {
-          const card = document.createElement('div');
-          card.className = 'video-card';
+    const videos = [
+      { id: "ebwh-063", title: "EBWH-063", url: "https://yanonly.com/videos/ebwh-063", thumbnail: "https://via.placeholder.com/320x180?text=EBWH-063" },
+      { id: "mida-211", title: "MIDA-211", url: "https://yanonly.com/videos/mida-211", thumbnail: "https://via.placeholder.com/320x180?text=MIDA-211" },
+      { id: "gma-010", title: "GMA-010", url: "https://yanonly.com/videos/gma-010", thumbnail: "https://via.placeholder.com/320x180?text=GMA-010" },
+      { id: "gvh-162", title: "GVH-162", url: "https://yanonly.com/videos/gvh-162", thumbnail: "https://via.placeholder.com/320x180?text=GVH-162" },
+      { id: "ebod-847", title: "EBOD-847", url: "https://yanonly.com/videos/ebod-847", thumbnail: "https://via.placeholder.com/320x180?text=EBOD-847" },
+      { id: "ipx-976", title: "IPX-976", url: "https://yanonly.com/videos/ipx-976", thumbnail: "https://via.placeholder.com/320x180?text=IPX-976" },
+      { id: "nacr-091", title: "NACR-091", url: "https://yanonly.com/videos/nacr-091", thumbnail: "https://via.placeholder.com/320x180?text=NACR-091" },
+      { id: "hrd-942", title: "HRD-942", url: "https://yanonly.com/videos/hrd-942", thumbnail: "https://via.placeholder.com/320x180?text=HRD-942" },
+      { id: "ppm-153", title: "PPM-153", url: "https://yanonly.com/videos/ppm-153", thumbnail: "https://via.placeholder.com/320x180?text=PPM-153" },
+      { id: "ssni-943", title: "SSNI-943", url: "https://yanonly.com/videos/ssni-943", thumbnail: "https://via.placeholder.com/320x180?text=SSNI-943" }
+    ];
 
-          card.innerHTML = `
-            <a href="${video.url}" target="_blank" rel="noopener noreferrer">
-              <img src="${video.thumbnail}" alt="${video.title}" />
-              <div class="video-title">${video.title}</div>
-            </a>
-          `;
+    const gallery = document.getElementById('gallery');
+    videos.forEach(video => {
+      const card = document.createElement('div');
+      card.className = 'video-card';
 
-          gallery.appendChild(card);
-        });
-      })
-      .catch(err => {
-        console.error('載入影片清單失敗:', err);
-      });
+      card.innerHTML = `
+        <a href="${video.url}" target="_blank" rel="noopener noreferrer">
+          <img src="${video.thumbnail}" alt="${video.title}" />
+          <div class="video-title">${video.title}</div>
+        </a>
+      `;
+
+      gallery.appendChild(card);
+    });
   </script>
 </body>
 </html>
+
