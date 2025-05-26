@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Brave 影片牆 測試版</title>
-  <style>
-    body { background:#ffe6f0; font-family: Arial, sans-serif; padding: 30px; }
-    h1 { text-align:center; color:#d63384; margin-bottom:40px; }
-    .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
-    .video-card { background:#fff; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1); overflow:hidden; transition: transform 0.3s; }
-    .video-card:hover { transform: translateY(-5px); }
-    .video-card img { width:100%; display:block; }
-    .video-title { padding:10px; text-align:center; font-weight:bold; color:#333; }
-    #pagination a { margin: 0 10px; text-decoration: none; color: #d63384; font-weight: bold; }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Brave 影片牆 測試版</title>
+<style>
+  body { background:#ffe6f0; font-family: Arial, sans-serif; padding: 30px; }
+  h1 { text-align:center; color:#d63384; margin-bottom:40px; }
+  .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
+  .video-card { background:#fff; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1); overflow:hidden; transition: transform 0.3s; }
+  .video-card:hover { transform: translateY(-5px); }
+  .video-card img { width:100%; display:block; }
+  .video-title { padding:10px; text-align:center; font-weight:bold; color:#333; }
+  #pagination a { margin: 0 10px; text-decoration: none; color: #d63384; font-weight: bold; }
+</style>
 </head>
 <body>
   <h1>Brave 影片牆 測試版</h1>
@@ -21,17 +21,14 @@
   <div id="pagination" style="text-align:center; margin-top: 30px;"></div>
 
   <script>
+    // 影片資料改成 yanonly clip 頁面連結，並用 clip ID 推估縮圖路徑
     const videos = [
-      { id: "ebwh-063", title: "EBWH-063", url: "https://yanonly.com/videos/ebwh-063", thumbnail: "https://via.placeholder.com/320x180?text=EBWH-063" },
-      { id: "mida-211", title: "MIDA-211", url: "https://yanonly.com/videos/mida-211", thumbnail: "https://via.placeholder.com/320x180?text=MIDA-211" },
-      { id: "gma-010", title: "GMA-010", url: "https://yanonly.com/videos/gma-010", thumbnail: "https://via.placeholder.com/320x180?text=GMA-010" },
-      { id: "gvh-162", title: "GVH-162", url: "https://yanonly.com/videos/gvh-162", thumbnail: "https://via.placeholder.com/320x180?text=GVH-162" },
-      { id: "ebod-847", title: "EBOD-847", url: "https://yanonly.com/videos/ebod-847", thumbnail: "https://via.placeholder.com/320x180?text=EBOD-847" },
-      { id: "ipx-976", title: "IPX-976", url: "https://yanonly.com/videos/ipx-976", thumbnail: "https://via.placeholder.com/320x180?text=IPX-976" },
-      { id: "nacr-091", title: "NACR-091", url: "https://yanonly.com/videos/nacr-091", thumbnail: "https://via.placeholder.com/320x180?text=NACR-091" },
-      { id: "hrd-942", title: "HRD-942", url: "https://yanonly.com/videos/hrd-942", thumbnail: "https://via.placeholder.com/320x180?text=HRD-942" },
-      { id: "ppm-153", title: "PPM-153", url: "https://yanonly.com/videos/ppm-153", thumbnail: "https://via.placeholder.com/320x180?text=PPM-153" },
-      { id: "ssni-943", title: "SSNI-943", url: "https://yanonly.com/videos/ssni-943", thumbnail: "https://via.placeholder.com/320x180?text=SSNI-943" }
+      { id: "681cf1484a3bda76fc2d9640", title: "影片1", url: "https://yanonly.com/clip/681cf1484a3bda76fc2d9640", thumbnail: "https://yanonly.com/static/thumb/681cf1484a3bda76fc2d9640.jpg" },
+      { id: "5e3f6723d4b5a60012c7f3e4", title: "影片2", url: "https://yanonly.com/clip/5e3f6723d4b5a60012c7f3e4", thumbnail: "https://yanonly.com/static/thumb/5e3f6723d4b5a60012c7f3e4.jpg" },
+      { id: "4a7b2c9dbe12345678901234", title: "影片3", url: "https://yanonly.com/clip/4a7b2c9dbe12345678901234", thumbnail: "https://yanonly.com/static/thumb/4a7b2c9dbe12345678901234.jpg" },
+      { id: "1234567890abcdef12345678", title: "影片4", url: "https://yanonly.com/clip/1234567890abcdef12345678", thumbnail: "https://yanonly.com/static/thumb/1234567890abcdef12345678.jpg" },
+      { id: "abcdefabcdefabcdefabcdef", title: "影片5", url: "https://yanonly.com/clip/abcdefabcdefabcdefabcdef", thumbnail: "https://yanonly.com/static/thumb/abcdefabcdefabcdefabcdef.jpg" },
+      // 你可以繼續補其他影片
     ];
 
     const gallery = document.getElementById('gallery');
@@ -75,34 +72,3 @@
   </script>
 </body>
 </html>
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>測試影片牆</title>
-  <style>
-    body { font-family: Arial; }
-    .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-    .video-card img { width: 100%; }
-  </style>
-</head>
-<body>
-  <h1>影片牆測試</h1>
-  <div class="gallery" id="gallery"></div>
-  <script>
-    const videos = [
-      { title: "影片1", url: "#", thumbnail: "https://via.placeholder.com/320x180?text=影片1" },
-      { title: "影片2", url: "#", thumbnail: "https://via.placeholder.com/320x180?text=影片2" }
-    ];
-    const gallery = document.getElementById('gallery');
-    videos.forEach(v=>{
-      const div = document.createElement('div');
-      div.className = 'video-card';
-      div.innerHTML = `<a href="${v.url}" target="_blank"><img src="${v.thumbnail}" alt="${v.title}"/><p>${v.title}</p></a>`;
-      gallery.appendChild(div);
-    });
-  </script>
-</body>
-</html>
-
