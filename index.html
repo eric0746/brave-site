@@ -42,3 +42,73 @@
     <div class="video-title">EBWH-063</div>
   </a>
 </div>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>Brave 影片牆</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      background: #ffe6f0;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 30px;
+    }
+    h1 {
+      text-align: center;
+      color: #d63384;
+      margin-bottom: 40px;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .video-card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .video-card:hover {
+      transform: translateY(-5px);
+    }
+    .video-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .video-title {
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Brave 精選影片</h1>
+  <div class="gallery">
+    <div class="video-card">
+      <a href="https://jable.tv/videos/mida-211/" target="_blank">
+        <img src="https://via.placeholder.com/320x180?text=MIDA-211" alt="MIDA-211">
+        <div class="video-title">MIDA-211</div>
+      </a>
+    </div>
+    <div class="video-card">
+      <a href="https://jable.tv/videos/gma-010/" target="_blank">
+        <img src="https://via.placeholder.com/320x180?text=GMA-010" alt="GMA-010">
+        <div class="video-title">GMA-010</div>
+      </a>
+    </div>
+    <div class="video-card">
+      <a href="https://jable.tv/videos/gvh-162/" target="_blank">
+        <img src="https://via.placeholder.com/320x180?text=GVH-162" alt="GVH-162">
+        <div class="video-title">GVH-162</div>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
