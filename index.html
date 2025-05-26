@@ -75,4 +75,34 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>測試影片牆</title>
+  <style>
+    body { font-family: Arial; }
+    .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .video-card img { width: 100%; }
+  </style>
+</head>
+<body>
+  <h1>影片牆測試</h1>
+  <div class="gallery" id="gallery"></div>
+  <script>
+    const videos = [
+      { title: "影片1", url: "#", thumbnail: "https://via.placeholder.com/320x180?text=影片1" },
+      { title: "影片2", url: "#", thumbnail: "https://via.placeholder.com/320x180?text=影片2" }
+    ];
+    const gallery = document.getElementById('gallery');
+    videos.forEach(v=>{
+      const div = document.createElement('div');
+      div.className = 'video-card';
+      div.innerHTML = `<a href="${v.url}" target="_blank"><img src="${v.thumbnail}" alt="${v.title}"/><p>${v.title}</p></a>`;
+      gallery.appendChild(div);
+    });
+  </script>
+</body>
+</html>
 
