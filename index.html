@@ -73,3 +73,78 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Brave 影片牆 - Yanonly 風格</title>
+<style>
+  body {
+    background: #ffe6f0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 30px;
+  }
+  h1 {
+    text-align: center;
+    color: #d63384;
+    margin-bottom: 40px;
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .video-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .video-card:hover {
+    transform: translateY(-5px);
+  }
+  .video-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .video-title {
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+  }
+</style>
+</head>
+<body>
+  <h1>Brave 精選影片 - Yanonly 風格</h1>
+  <div class="gallery" id="gallery"></div>
+
+  <script>
+    fetch('videos.json')
+      .then(response => response.json())
+      .then(videos => {
+        const gallery = document.getElementById('gallery');
+        videos.forEach(video => {
+          const card = document.createElement('div');
+          card.className = 'video-card';
+
+          card.innerHTML = `
+            <a href="${video.url}" target="_blank" rel="noopener noreferrer">
+              <img src="${video.thumbnail}" alt="${video.title}" />
+              <div class="video-title">${video.title}</div>
+            </a>
+          `;
+
+          gallery.appendChild(card);
+        });
+      })
+      .catch(err => {
+        console.error('載入影片清單失敗:', err);
+      });
+  </script>
+</body>
+</html>
