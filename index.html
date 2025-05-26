@@ -1,39 +1,100 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Brave.com</title>
-  <link rel="stylesheet" href="style.css"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Brave 影片牆 - 直接預覽播放</title>
+<style>
+  body { background:#ffe6f0; font-family: Arial, sans-serif; padding: 30px; }
+  h1 { text-align:center; color:#d63384; margin-bottom: 30px; }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .video-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+  .video-card:hover {
+    transform: translateY(-5px);
+  }
+  .video-card img {
+    width: 100%;
+    display: block;
+  }
+  .video-title {
+    padding: 10px;
+    font-weight: bold;
+    color: #333;
+  }
+  .player-container {
+    margin-top: 40px;
+    text-align: center;
+  }
+  iframe {
+    width: 80vw;
+    height: 45vw;
+    max-width: 800px;
+    max-height: 450px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Brave.com</h1>
-    <button onclick="toggleLanguage()">切換語言 / Switch Language</button>
-  </header>
 
-  <main>
-    <div class="video-grid">
-      <div class="video">
-        <iframe src="https://www.youtube.com/embed/fyoPQ5Zo3dk" frameborder="0" allowfullscreen></iframe>
-      </div>
-      <div class="video">
-        <iframe src="https://www.youtube.com/embed/zdNDuVFrq_w" frameborder="0" allowfullscreen></iframe>
-      </div>
-      <div class="video">
-        <iframe src="https://www.youtube.com/embed/rlh76p4T6qw" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>
-  </main>
+<h1>Brave 影片牆 - 直接預覽播放</h1>
 
-  <footer>
-    <p>© 2025 Brave.com</p>
-  </footer>
+<div class="gallery" id="gallery"></div>
 
-  <script src="scripts.js"></script>
+<div class="player-container" id="player-container" style="display:none;">
+  <iframe id="video-player" src="" allowfullscreen allow="autoplay"></iframe>
+</div>
+
+<script>
+  const videos = [
+    {"id":"ebwh-063","title":"EBWH-063","url":"https://yanonly.com/videos/ebwh-063","thumbnail":"https://cdn.yanonly.com/videos/ebwh-063/thumbnail.jpg"},
+    {"id":"mida-211","title":"MIDA-211","url":"https://yanonly.com/videos/mida-211","thumbnail":"https://cdn.yanonly.com/videos/mida-211/thumbnail.jpg"},
+    {"id":"gma-010","title":"GMA-010","url":"https://yanonly.com/videos/gma-010","thumbnail":"https://cdn.yanonly.com/videos/gma-010/thumbnail.jpg"},
+    {"id":"gvh-162","title":"GVH-162","url":"https://yanonly.com/videos/gvh-162","thumbnail":"https://cdn.yanonly.com/videos/gvh-162/thumbnail.jpg"},
+    {"id":"ebod-847","title":"EBOD-847","url":"https://yanonly.com/videos/ebod-847","thumbnail":"https://cdn.yanonly.com/videos/ebod-847/thumbnail.jpg"},
+    {"id":"ipx-976","title":"IPX-976","url":"https://yanonly.com/videos/ipx-976","thumbnail":"https://cdn.yanonly.com/videos/ipx-976/thumbnail.jpg"},
+    {"id":"nacr-091","title":"NACR-091","url":"https://yanonly.com/videos/nacr-091","thumbnail":"https://cdn.yanonly.com/videos/nacr-091/thumbnail.jpg"},
+    {"id":"hrd-942","title":"HRD-942","url":"https://yanonly.com/videos/hrd-942","thumbnail":"https://cdn.yanonly.com/videos/hrd-942/thumbnail.jpg"},
+    {"id":"ppm-153","title":"PPM-153","url":"https://yanonly.com/videos/ppm-153","thumbnail":"https://cdn.yanonly.com/videos/ppm-153/thumbnail.jpg"},
+    {"id":"ssni-943","title":"SSNI-943","url":"https://yanonly.com/videos/ssni-943","thumbnail":"https://cdn.yanonly.com/videos/ssni-943/thumbnail.jpg"}
+  ];
+
+  const gallery = document.getElementById('gallery');
+  const playerContainer = document.getElementById('player-container');
+  const videoPlayer = document.getElementById('video-player');
+
+  videos.forEach(video => {
+    const card = document.createElement('div');
+    card.className = 'video-card';
+    card.innerHTML = `
+      <img src="${video.thumbnail}" alt="${video.title}">
+      <div class="video-title">${video.title}</div>
+    `;
+    card.addEventListener('click', () => {
+      // 這裡改成 embed 連結格式，假設是 yanonly.com/embed/影片ID
+      videoPlayer.src = `https://yanonly.com/embed/${video.id}`;
+      playerContainer.style.display = 'block';
+      // 頁面自動滾動到播放器位置
+      window.scrollTo({top: playerContainer.offsetTop - 20, behavior: 'smooth'});
+    });
+    gallery.appendChild(card);
+  });
+</script>
+
 </body>
 </html>
 
-
-</body>
 </html>
