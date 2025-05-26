@@ -185,3 +185,63 @@
 </body>
 </html>
 
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>影片背景示範</title>
+<style>
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: #000;
+    color: white;
+  }
+  .video-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    overflow: hidden;
+    z-index: -1;
+  }
+  .video-bg video {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .content {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+  }
+  p {
+    font-size: 1.5rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="video-bg">
+  <video autoplay muted loop playsinline>
+    <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" type="video/webm">
+    <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+    您的瀏覽器不支援影片播放。
+  </video>
+</div>
+
+<div class="content">
+  <h1>影片背景示範</h1>
+  <p>這是直接用公開影片網址的版本，不用自己準備影片檔</p>
+</div>
+
+</body>
+</html>
