@@ -1,35 +1,67 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Brave.com</title>
-  <link rel="stylesheet" href="style.css"/>
+  <meta charset="UTF-8">
+  <title>Brave 影片展示</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: #ffe6f0;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #d63384;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .video-card {
+      background: #fff;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .video-card:hover {
+      transform: translateY(-5px);
+    }
+    .video-card img {
+      width: 100%;
+      border-radius: 5px;
+    }
+    .video-card p {
+      margin: 10px 0 0;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Brave.com</h1>
-    <button onclick="toggleLanguage()">切換語言 / Switch Language</button>
-  </header>
-
-  <main>
-    <div class="video-grid">
-      <div class="video">
-        <iframe src="https://www.youtube.com/embed/fyoPQ5Zo3dk" frameborder="0" allowfullscreen></iframe>
-      </div>
-      <div class="video">
-        <iframe src="https://www.youtube.com/embed/zdNDuVFrq_w" frameborder="0" allowfullscreen></iframe>
-      </div>
-      <div class="video">
-        <iframe src="https://www.youtube.com/embed/rlh76p4T6qw" frameborder="0" allowfullscreen></iframe>
-      </div>
+  <h1>Brave 精選影片</h1>
+  <div class="gallery">
+    <div class="video-card">
+      <a href="https://www.youtube.com/watch?v=fyoPQ5Zo3dk" target="_blank">
+        <img src="https://img.youtube.com/vi/fyoPQ5Zo3dk/hqdefault.jpg" alt="影片 1">
+        <p>Cyber Soul 影片 1</p>
+      </a>
     </div>
-  </main>
-
-  <footer>
-    <p>© 2025 Brave.com</p>
-  </footer>
-
-  <script src="scripts.js"></script>
+    <div class="video-card">
+      <a href="https://www.youtube.com/watch?v=zdNDuVFrq_w" target="_blank">
+        <img src="https://img.youtube.com/vi/zdNDuVFrq_w/hqdefault.jpg" alt="影片 2">
+        <p>Cyber Soul 影片 2</p>
+      </a>
+    </div>
+    <div class="video-card">
+      <a href="https://www.youtube.com/watch?v=rlh76p4T6qw" target="_blank">
+        <img src="https://img.youtube.com/vi/rlh76p4T6qw/hqdefault.jpg" alt="影片 3">
+        <p>Breeze Mood 影片 3</p>
+      </a>
+    </div>
+  </div>
 </body>
 </html>
